@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudrapratap Singh Jat — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;
+  --bg2:#111113;
+  --bg3:#18181b;
+  --bg4:#1f2126;
+  --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.14);
+  --fg:#fafafa;
+  --fg2:#a1a1aa;
+  --fg3:#52525b;
+  --green:#4ade80;
+  --blue:#60a5fa;
+  --purple:#a78bfa;
+  --amber:#fbbf24;
+  --teal:#22d3ee;
+  --glow-a:rgba(34,211,238,.22);
+  --glow-b:rgba(96,165,250,.18);
+  --glow-c:rgba(251,191,36,.11);
+  --mono:'Geist Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 12% 12%, rgba(96,165,250,.08), transparent 30%),
+    radial-gradient(circle at 88% 22%, rgba(34,211,238,.06), transparent 32%),
+    linear-gradient(160deg,#08080b 0%, #0b0c11 45%, #09090b 100%);
+  color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  position:relative;overflow-x:hidden;
+}
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  width:34rem;height:34rem;
+  border-radius:50%;
+  filter:blur(58px);
+  pointer-events:none;
+  z-index:0;
+  opacity:.45;
+  animation:drift 16s ease-in-out infinite;
+}
+body::before{
+  top:-10rem;left:-8rem;
+  background:radial-gradient(circle,var(--glow-a) 0%, rgba(34,211,238,0) 68%);
+}
+body::after{
+  right:-10rem;bottom:-12rem;
+  background:radial-gradient(circle,var(--glow-c) 0%, rgba(251,191,36,0) 70%);
+  animation-delay:4.5s;
+}
+@keyframes drift{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(0,-22px,0) scale(1.04)}
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ─── Layout ─── */
+.layout{display:flex;min-height:100vh;max-width:1100px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+
+/* ─── Sidebar ─── */
+.sidebar{
+  width:260px;flex-shrink:0;
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:4rem 1.5rem 3rem 0;
+  border-right:1px solid var(--border);
+  backdrop-filter:blur(6px);
+}
+.avatar{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,#3f3f46,#27272a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.82rem;font-weight:500;
+  color:var(--fg);margin-bottom:1.4rem;
+  border:1px solid var(--border2);
+  overflow:hidden;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.s-name{font-size:1rem;font-weight:600;margin-bottom:.22rem;line-height:1.3}
+.s-role{font-size:.76rem;color:var(--fg2);margin-bottom:.35rem}
+.s-status{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.7rem;color:var(--green);margin-bottom:1.6rem;
+  font-family:var(--mono);
+}
+.s-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.s-bio{font-size:.78rem;color:var(--fg2);line-height:1.75;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border)}
+nav{display:flex;flex-direction:column;gap:.08rem}
+.nav-link{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.46rem .7rem;border-radius:6px;
+  font-size:.78rem;color:var(--fg2);
+  transition:background .15s,color .15s;
+  cursor:pointer;
+}
+.nav-link:hover,.nav-link.active{background:var(--bg3);color:var(--fg)}
+.nav-link svg{opacity:.45;flex-shrink:0;transition:opacity .15s}
+.nav-link:hover svg,.nav-link.active svg{opacity:1}
+.s-bottom{}
+.social-links{display:flex;gap:.6rem;flex-wrap:wrap;padding-top:1.4rem;border-top:1px solid var(--border)}
+.soc{
+  display:flex;align-items:center;gap:.38rem;
+  font-size:.7rem;color:var(--fg3);
+  padding:.32rem .6rem;border-radius:5px;
+  border:1px solid var(--border);
+  transition:color .15s,border-color .15s;
+}
+.soc:hover{color:var(--fg);border-color:var(--border2)}
+
+/* ─── Main ─── */
+.main{flex:1;padding:4rem 0 6rem 3.5rem;max-width:720px}
+
+/* ─── Section ─── */
+.section{margin-bottom:5rem}
+.section-title{
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;
+  color:var(--fg3);margin-bottom:2rem;
+  display:flex;align-items:center;gap:.75rem;
+  font-family:var(--mono);
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ─── Hero ─── */
+.hero-greeting{font-size:2.1rem;font-weight:600;line-height:1.2;margin-bottom:.9rem;letter-spacing:-.025em}
+.hero-greeting span{color:var(--fg2)}
+.hero-sub{font-size:.95rem;font-weight:500;color:var(--fg2);margin-bottom:.9rem;line-height:1.5}
+.hero-sub strong{color:var(--fg)}
+.hero-desc{font-size:.86rem;color:var(--fg2);line-height:1.85;max-width:62ch;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+.hbtn{display:inline-flex;align-items:center;gap:.42rem;padding:.48rem 1.05rem;border-radius:6px;font-size:.76rem;font-weight:500;transition:opacity .15s,transform .15s}
+.hbtn:hover{opacity:.85;transform:translateY(-1px)}
+.hbtn-primary{background:var(--fg);color:var(--bg)}
+.hbtn-ghost{background:transparent;color:var(--fg2);border:1px solid var(--border2)}
+.hbtn-ghost:hover{color:var(--fg)}
+
+/* ─── About ─── */
+.about-text{font-size:.86rem;color:var(--fg2);line-height:1.88}
+.about-text a{color:var(--fg);border-bottom:1px solid var(--border2);transition:border-color .15s}
+.about-text a:hover{border-color:var(--fg)}
+.about-text p+p{margin-top:1rem}
+
+/* ─── Training ─── */
+.exp-item{
+  display:flex;gap:1.2rem;
+  padding:1.2rem;border-radius:10px;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),#0f1015);
+  transition:border-color .2s,background .2s,box-shadow .2s,transform .2s;
+  text-decoration:none;color:inherit;margin-bottom:1rem;
+  box-shadow:0 14px 30px rgba(0,0,0,.22);
+}
+.exp-item:hover{border-color:var(--border2);background:linear-gradient(180deg,var(--bg3),#13161f);transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.exp-logo{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.7rem;font-weight:500;
+  flex-shrink:0;overflow:hidden;
+}
+.exp-logo img{width:100%;height:100%;object-fit:cover}
+.exp-body{flex:1;min-width:0}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.18rem}
+.exp-company{font-size:.88rem;font-weight:600}
+.exp-date{font-size:.7rem;color:var(--fg3);font-family:var(--mono);white-space:nowrap;flex-shrink:0}
+.exp-role{font-size:.78rem;color:var(--fg2);margin-bottom:.5rem}
+.exp-desc{font-size:.78rem;color:var(--fg2);line-height:1.78}
+
+/* ─── Education ─── */
+.edu-item{
+  display:flex;gap:1.2rem;padding:1.2rem;border-radius:10px;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),#0f1015);
+  transition:border-color .2s,box-shadow .2s,transform .2s;margin-bottom:1rem;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+}
+.edu-item:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.26)}
+.edu-logo{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.7rem;font-weight:600;
+  flex-shrink:0;
+}
+.edu-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.18rem}
+.edu-school{font-size:.88rem;font-weight:600}
+.edu-date{font-size:.7rem;color:var(--fg3);font-family:var(--mono);white-space:nowrap;flex-shrink:0}
+.edu-degree{font-size:.78rem;color:var(--fg2)}
+.edu-meta{font-size:.72rem;color:var(--fg3);margin-top:.35rem;font-family:var(--mono)}
+.edu-badge{
+  display:inline-flex;align-items:center;gap:.28rem;margin-top:.45rem;
+  font-size:.63rem;font-family:var(--mono);
+  background:rgba(74,222,128,.1);color:#4ade80;
+  padding:.18rem .55rem;border-radius:4px;border:1px solid rgba(74,222,128,.18);
+}
+
+/* ─── Certifications ─── */
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.cert-card{
+  padding:1.1rem 1.2rem;border-radius:10px;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),#0f1015);
+  transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 12px 26px rgba(0,0,0,.2);
+}
+.cert-card:hover{border-color:var(--border2);background:linear-gradient(180deg,var(--bg3),#141722);transform:translateY(-2px);box-shadow:0 18px 35px rgba(0,0,0,.3)}
+.cert-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.35rem}
+.cert-name{font-size:.84rem;font-weight:600;line-height:1.35}
+.cert-year{font-size:.63rem;font-family:var(--mono);color:var(--fg3);white-space:nowrap;flex-shrink:0;margin-top:.1rem}
+.cert-org{font-size:.74rem;color:var(--fg2);margin-bottom:.55rem}
+.cert-verify{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.68rem;color:var(--blue);
+  transition:opacity .15s;
+}
+.cert-verify:hover{opacity:.7;text-decoration:underline}
+.cert-badge-oracle{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.62rem;font-family:var(--mono);
+  background:rgba(251,191,36,.08);color:var(--amber);
+  padding:.18rem .55rem;border-radius:4px;border:1px solid rgba(251,191,36,.18);
+  margin-bottom:.5rem;
+}
+
+/* ─── Skills ─── */
+.skills-wrap{display:flex;flex-wrap:wrap;gap:.45rem}
+.skill-pill{
+  display:inline-flex;align-items:center;
+  padding:.32rem .72rem;border-radius:6px;
+  font-size:.76rem;font-weight:500;
+  background:linear-gradient(180deg,var(--bg2),#0f1015);border:1px solid var(--border);
+  color:var(--fg2);transition:border-color .15s,color .15s,transform .15s;
+}
+.skill-pill:hover{border-color:var(--border2);color:var(--fg);transform:translateY(-1px)}
+
+/* ─── Projects ─── */
+.proj-header p{font-size:.86rem;color:var(--fg2);margin-top:.35rem}
+.proj-grid{display:flex;flex-direction:column;gap:1rem}
+.proj-card{
+  border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),#0f1015);overflow:hidden;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 18px 34px rgba(0,0,0,.24);
+}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 26px 46px rgba(0,0,0,.33)}
+.proj-img{
+  width:100%;height:175px;background:linear-gradient(135deg,var(--bg3),var(--bg4));overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--border);position:relative;
+}
+.proj-img::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 40%, rgba(255,255,255,.06) 52%, transparent 65%);
+  transform:translateX(-100%);
+  transition:transform .6s ease;
+}
+.proj-card:hover .proj-img::after{transform:translateX(100%)}
+.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.proj-card:hover .proj-img img{transform:scale(1.03)}
+.proj-img-placeholder{font-size:.68rem;font-family:var(--mono);color:var(--fg3);letter-spacing:.1em}
+.proj-body{padding:1.2rem}
+.proj-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;margin-bottom:.28rem}
+.proj-title{font-size:.93rem;font-weight:600}
+.proj-date{font-size:.68rem;color:var(--fg3);font-family:var(--mono);white-space:nowrap;flex-shrink:0}
+.proj-desc{font-size:.8rem;color:var(--fg2);line-height:1.78;margin-bottom:.95rem}
+.proj-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+.proj-techs{display:flex;flex-wrap:wrap;gap:.32rem}
+.tech-tag{
+  font-size:.66rem;padding:.18rem .52rem;border-radius:4px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--fg2);font-family:var(--mono);
+}
+.proj-links{display:flex;gap:.45rem;flex-shrink:0}
+.proj-link{
+  display:inline-flex;align-items:center;gap:.28rem;
+  font-size:.7rem;color:var(--fg2);
+  padding:.28rem .65rem;border-radius:5px;
+  border:1px solid var(--border);
+  transition:color .15s,border-color .15s;
+}
+.proj-link:hover{color:var(--fg);border-color:var(--border2)}
+
+/* ─── Contact ─── */
+.contact-intro{font-size:.86rem;color:var(--fg2);line-height:1.82;margin-bottom:1.5rem;max-width:55ch}
+.contact-cards{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:2rem}
+.contact-card{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.7rem 1rem;border-radius:8px;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--bg2),#0f1015);
+  font-size:.78rem;color:var(--fg2);
+  transition:border-color .15s,color .15s,transform .15s;
+}
+.contact-card:hover{border-color:var(--border2);color:var(--fg);transform:translateY(-1px)}
+
+/* ─── Footer ─── */
+.footer{
+  margin-top:3.5rem;padding-top:1.75rem;
+  border-top:1px solid var(--border);
+  font-size:.7rem;color:var(--fg3);font-family:var(--mono);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+}
+
+/* ─── Reveal ─── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* ─── Responsive ─── */
+@media(max-width:780px){
+  .layout{flex-direction:column}
+  .sidebar{width:100%;position:relative;height:auto;padding:2.5rem 0 2rem;border-right:none;border-bottom:1px solid var(--border)}
+  .main{padding:3rem 0 4rem}
+  .cert-grid{grid-template-columns:1fr}
+  body::before,body::after{width:24rem;height:24rem;opacity:.38}
+}
+@media(max-width:500px){
+  .hero-greeting{font-size:1.7rem}
+  .proj-footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="s-top">
+      <div class="avatar">
+        <!-- To add your photo, replace this line:
+             RSJ
+             with: <img src="your-photo.jpg" alt="Rudrapratap"> -->
+        RSJ
+      </div>
+      <p class="s-name">Rudrapratap Singh Jat</p>
+      <p class="s-role">Fullstack Web Developer</p>
+      <p class="s-status">Open to opportunities</p>
+      <p class="s-bio">I love building things and helping others. Passionate about crafting seamless, scalable web experiences.</p>
+      <nav>
+        <a class="nav-link active" href="#home">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Home
+        </a>
+        <a class="nav-link" href="#about">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          About
+        </a>
+        <a class="nav-link" href="#education">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Education
+        </a>
+        <a class="nav-link" href="#training">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Training
+        </a>
+        <a class="nav-link" href="#certifications">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Certifications
+        </a>
+        <a class="nav-link" href="#skills">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Skills
+        </a>
+        <a class="nav-link" href="#projects">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Projects
+        </a>
+        <a class="nav-link" href="#contact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact
+        </a>
+      </nav>
+    </div>
+    <div class="s-bottom">
+      <div class="social-links">
+        <a href="https://github.com/RudraJat" target="_blank" class="soc">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/rudrapratapsinghjat/" target="_blank" class="soc">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main">
+
+    <!-- HOME -->
+    <section id="home" class="section" style="margin-bottom:4.5rem">
+      <div class="reveal">
+        <h1 class="hero-greeting">Hi, I'm <span>Rudra</span> 👋</h1>
+        <p class="hero-sub"><strong>Fullstack Web Developer.</strong> I enjoy turning ideas into products people can actually use.</p>
+        <p class="hero-desc">I am currently studying Computer Science at Lovely Professional University and spending most of my time building web apps, improving my backend fundamentals, and learning from real projects. I have completed frontend training at Gokburu Pvt. Ltd. and earned Oracle Cloud certifications in DevOps and AI foundations.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="hbtn hbtn-primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Contact Me
+          </a>
+          <a href="https://github.com/RudraJat" target="_blank" class="hbtn hbtn-ghost">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <p class="section-title">About</p>
+      <div class="about-text">
+        <p>I'm a Fullstack Web Developer currently pursuing my <a href="#education">B.Tech in Computer Science &amp; Engineering at Lovely Professional University</a> (2023–2027). I like working across the stack, especially when I can connect a clean frontend with a reliable backend.</p>
+        <p>During my training at <a href="#training">Gokburu Pvt. Ltd.</a>, I got hands-on experience shipping features, debugging under deadlines, and collaborating like a real product team. I keep my focus on practical, maintainable code and steady learning.</p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section reveal">
+      <p class="section-title">Education</p>
+
+      <!-- University -->
+      <div class="edu-item">
+        <div style="flex:1;min-width:0">
+          <div class="edu-header">
+            <span class="edu-school">Lovely Professional University</span>
+            <span class="edu-date">2023 – 2027</span>
+          </div>
+          <p class="edu-degree">B.Tech — Computer Science &amp; Engineering (CSE)</p>
+          <span class="edu-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Currently Pursuing
+          </span>
+        </div>
+      </div>
+
+      <!-- Intermediate -->
+      <div class="edu-item">
+        <div style="flex:1;min-width:0">
+          <div class="edu-header">
+            <span class="edu-school">Sanskar Public School</span>
+            <span class="edu-date">2022 – 2023</span>
+          </div>
+          <p class="edu-degree">Intermediate — Class XII</p>
+          <p class="edu-meta">Science Stream &nbsp;·&nbsp; Senior Secondary</p>
+        </div>
+      </div>
+
+      <!-- Matriculation -->
+      <div class="edu-item">
+        <div style="flex:1;min-width:0">
+          <div class="edu-header">
+            <span class="edu-school">E.C.S Secondary School</span>
+            <span class="edu-date">2020 – 2021</span>
+          </div>
+          <p class="edu-degree">Matriculation — Class X</p>
+          <p class="edu-meta">Secondary School</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section id="training" class="section reveal">
+      <p class="section-title">Training</p>
+
+      <a href="https://gokburu.com" target="_blank" class="exp-item">
+        <div class="exp-body">
+          <div class="exp-header">
+            <span class="exp-company">Gokburu Pvt. Ltd.</span>
+            <span class="exp-date">May 2025 – Jul 2025</span>
+          </div>
+          <p class="exp-role">Frontend Developer Trainee</p>
+          <p class="exp-desc">Built and refined UI components using React and TailwindCSS, improved page performance, and worked with Node.js, Express, and MongoDB for full feature delivery. I also used Docker and basic AWS workflows to understand how code moves from local development to production.</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section reveal">
+      <p class="section-title">Certifications</p>
+      <div class="cert-grid">
+
+          <div class="cert-card">
+            <span class="cert-badge-oracle">Oracle Cloud</span>
+            <div class="cert-top">
+              <span class="cert-name">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</span>
+              <span class="cert-year">2026</span>
+            </div>
+            <p class="cert-org">Oracle</p>
+            <a href="https://drive.google.com/file/d/1gobZyWENto8YvmBQ1pHQlq6q4sMcxFXn/view?usp=sharing target="_blank" class="cert-verify">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View Certificate ↗
+            </a>
+          </div>
+        <div class="cert-card">
+          <span class="cert-badge-oracle">Oracle Cloud</span>
+          <div class="cert-top">
+            <span class="cert-name">Oracle Cloud Infrastructure 2025 Certified DevOps Professional</span>
+            <span class="cert-year">2025</span>
+          </div>
+          <p class="cert-org">Oracle</p>
+          <a href="https://drive.google.com/file/d/1FzbcXMtEFIFqp_In-2gIw75QGOLI-BbU/view?usp=sharing" target="_blank" class="cert-verify">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Certificate ↗
+          </a>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <p class="section-title">Skills</p>
+      <div class="skills-wrap">
+        <span class="skill-pill">React</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Next.js</span>
+        <span class="skill-pill">AWS</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">MongoDB</span>
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">Express</span>
+        <span class="skill-pill">TailwindCSS</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">Redux</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">REST APIs</span>
+        <span class="skill-pill">Socket.io</span>
+        <span class="skill-pill">DevOps</span>
+        <span class="skill-pill">CI/CD</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">Linux</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <div class="proj-header">
+        <p class="section-title">My Projects</p>
+        <p>A few projects that helped me grow as a developer. Each one taught me something different, from design decisions to deployment.</p>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <!-- Replace with: <img src="project1.png" alt="Project 1"> -->
+            <span class="proj-img-placeholder">PROJECT SCREENSHOT</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-title-row">
+              <span class="proj-title">Campus Connect Portal</span>
+              <span class="proj-date">Jan 2025 – Present</span>
+            </div>
+            <p class="proj-desc">A student-focused portal for announcements, club updates, and event signups. Built this to reduce scattered communication and create one place for campus activity updates.</p>
+            <div class="proj-footer">
+              <div class="proj-techs">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">TailwindCSS</span>
+              </div>
+              <div class="proj-links">
+                <a href="#" target="_blank" class="proj-link">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live
+                </a>
+                <a href="https://github.com/RudraJat" target="_blank" class="proj-link">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  Source
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img">
+            <span class="proj-img-placeholder">PROJECT SCREENSHOT</span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-title-row">
+              <span class="proj-title">QuickCart Admin Dashboard</span>
+              <span class="proj-date">Sep 2024 – Nov 2024</span>
+            </div>
+            <p class="proj-desc">An internal dashboard to manage products, track orders, and monitor key store stats. This project improved my understanding of API design, state management, and clean data tables.</p>
+            <div class="proj-footer">
+              <div class="proj-techs">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://github.com/RudraJat" target="_blank" class="proj-link">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section reveal">
+      <p class="section-title">Get in Touch</p>
+      <p class="contact-intro">If you have an internship, freelance project, or just want to connect, message me on <a href="https://www.linkedin.com/in/rudrapratapsinghjat/" target="_blank">LinkedIn</a>. I am always open to good conversations and learning opportunities.</p>
+      <div class="contact-cards">
+        <a href="https://www.linkedin.com/in/rudrapratapsinghjat/" target="_blank" class="contact-card">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/RudraJat" target="_blank" class="contact-card">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div class="footer">
+        <span>© 2025 Rudrapratap Singh Jat</span>
+        <span>Built with ❤️ and espresso ☕</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { threshold: 0.35, rootMargin: '-10% 0px -60% 0px' });
+sections.forEach(s => secObs.observe(s));
+
+// Smooth scroll
+navLinks.forEach(l => {
+  l.addEventListener('click', e => {
+    const t = document.querySelector(l.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// Reveal
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); revObs.unobserve(e.target); } });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+</script>
+</body>
+</html>
